@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Candidatos Concorrendo</title>
+
+<link 
+	th:href="@{/css/candidatos.css}" 
+	rel="stylesheet"
+/>
+<link 
+	th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css}" 
+	rel="stylesheet"
+/>
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  		<a class="navbar-brand" th:href="@{candidatos}">Eleições</a>
+  		<button 
+  			class="navbar-toggler" 
+  			type="button" 
+  			data-toggle="collapse" 
+  			data-target="#navbarSupportedContent" 
+  			aria-controls="navbarSupportedContent" 
+  			aria-expanded="false" 
+  			aria-label="Toggle navigation"
+  		>
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
+
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    		<ul class="navbar-nav mr-auto">
+      			<li class="nav-item dropdown">
+        			<a 
+        				class="nav-link active dropdown-toggle" 
+        				href="#" id="navbarDropdown" 
+        				role="button" 
+        				data-toggle="dropdown" 
+        				aria-haspopup="true" 
+        				aria-expanded="false"
+        			>
+          				Candidatos
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          				<a class="dropdown-item" th:href="@{/listaCandidatos}">Candidatos Concorrendo</a>
+          				<div class="dropdown-divider"></div>
+          				<a class="dropdown-item" th:href="@{/candidatos}">Cadastrar Candidatos</a>
+        			</div>
+      			</li>
+      			<li class="nav-item dropdown">
+        			<a 
+        				class="nav-link active dropdown-toggle" 
+        				href="#" id="navbarDropdown" 
+        				role="button" 
+        				data-toggle="dropdown" 
+        				aria-haspopup="true" 
+        				aria-expanded="false"
+        			>
+        				Votação
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          			<a class="dropdown-item" th:href="@{/votacao}">Presidente</a>
+	          			<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/votoSenador}">Senador</a>
+			          	<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/votoGovernador}">Governador</a>
+			          	<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/votoDepEstadual}">Deputado Estadual</a>
+			          	<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/votoDepFederal}">Deputado Federal</a>
+        			</div>
+      			</li>
+		      	<!-- <li class="nav-item dropdown">
+        			<a 
+        				class="nav-link active dropdown-toggle" 
+        				href="#" id="navbarDropdown" 
+        				role="button" 
+        				data-toggle="dropdown" 
+        				aria-haspopup="true" 
+        				aria-expanded="false"
+        			>
+        				Acompanhar Apuração
+        			</a>
+        			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          			<a class="dropdown-item" th:href="@{/apuracaoPresidente}">Presidente</a>
+	          			<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/apuracaoSenador}">Senador</a>
+			          	<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/apuracaoGovernador}">Governador</a>
+			          	<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/apuracaoDepEstadual}">Deputado Estadual</a>
+			          	<div class="dropdown-divider"></div>
+			          	<a class="dropdown-item" th:href="@{/apuracaoDepFederal}">Deputado Federal</a>
+        			</div>
+      			</li>  -->
+      			<li class="nav-item">
+      				<a class="nav-link active" th:href="@{/apuracaoVotos}">Acompanhar Apuração</a>
+      			</li>
+    		</ul>
+  		</div>
+	</nav>
+	
+	
+	<section class="section-lista-candidatos">
+		<div class="container">
+			<h1>Candidatos Concorrendo</h1>
+			<h5>Encontre aqui o número do seu candidato!</h5>
+			<table class="table table-hover">
+				<thead class="thead-dark">
+			   		<tr>
+				    	<th scope="col">Candidatos</th>
+				      	<th scope="col">Número do Candidato</th>
+				      	<th scope="col">Concorre a</th>
+			    	</tr>
+			  	</thead>
+			  	<tbody>
+			    	<tr th:each="cand : ${listaCandidatos}"> 
+			      		<td th:text="${cand.nome}"></td>
+			      		<td th:text="${cand.numeroCandidato}"></td>
+				  		<td th:text="${cand.cargo.cargo}"></td>
+			    	</tr> 
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+<!-- JS -->
+<script th:src="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
